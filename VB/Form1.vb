@@ -1,15 +1,15 @@
-﻿Imports System.Data
+Imports System.Data
 Imports System.Windows.Forms
 Imports DevExpress.XtraPivotGrid
 
 Namespace PivotGridEditor
-    Partial Public Class Form1
+
+    Public Partial Class Form1
         Inherits Form
 
         Public Sub New()
             InitializeComponent()
-
-            Dim data As New DataTable()
+            Dim data As DataTable = New DataTable()
             data.Columns.Add("row", GetType(String))
             data.Columns.Add("data", GetType(String))
             data.Rows.Add("1", "aaa")
@@ -19,9 +19,7 @@ Namespace PivotGridEditor
             pivotGridControl1.DataSource = data.DefaultView
         End Sub
 
-        Private Sub pivotGridControl1_EditValueChanged(ByVal sender As Object, _
-                                                       ByVal e As EditValueChangedEventArgs) _
-                                                   Handles pivotGridControl1.EditValueChanged
+        Private Sub pivotGridControl1_EditValueChanged(ByVal sender As Object, ByVal e As EditValueChangedEventArgs)
             Dim ds As PivotDrillDownDataSource = e.CreateDrillDownDataSource()
             ds.SetValue(0, "data", e.Editor.EditValue)
         End Sub
